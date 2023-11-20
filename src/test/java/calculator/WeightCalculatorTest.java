@@ -14,7 +14,7 @@ class WeightCalculatorTest {
 
     @Test
     void ExpressCalculatePrice(){
-        WeightCalculator weightCalculator = new StandardShippingCalculator();
+        WeightCalculator weightCalculator = new ExpressShippingCalculator();
         double price = weightCalculator.calculatePrice(20);
         assertEquals(70 , price);
     }
