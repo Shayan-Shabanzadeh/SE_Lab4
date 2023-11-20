@@ -15,4 +15,8 @@ public class ProductContext {
     public ProductState getState() {
         return state;
     }
+
+    public void setState(ProductState state) {
+        this.state = state;
+    }
 }
