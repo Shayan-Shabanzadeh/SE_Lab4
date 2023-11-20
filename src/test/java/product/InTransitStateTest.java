@@ -39,8 +39,8 @@ class InTransitStateTest {
         inTransitState.nextState(context);
 
         System.setOut(System.out);
-
-        // Check if the state is updated to DeliveredState
+        String expectedOutput = "Package state changed to Delivered.";
+        assertEquals(expectedOutput, outputStream.toString().trim());
         assertTrue(context.getState() instanceof DeliveredState);
     }
 }
