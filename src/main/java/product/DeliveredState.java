@@ -8,5 +8,6 @@ public class DeliveredState implements ProductState {
 
     @Override
     public void nextState(ProductContext context) {
+        System.out.println("Package is already delivered. No further state change.");
     }
 }

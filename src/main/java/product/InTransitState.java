@@ -8,6 +8,7 @@ public class InTransitState implements ProductState {
 
     @Override
     public void nextState(ProductContext context) {
-
+        System.out.println("Package state changed to Delivered.");
+        context.setState(new DeliveredState());
     }
 }
