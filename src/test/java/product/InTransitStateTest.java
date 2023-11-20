@@ -1,11 +1,14 @@
 package product;
 
+import calculator.StandardShippingCalculator;
+import calculator.WeightCalculator;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class InTransitStateTest {
 
@@ -26,17 +29,18 @@ class InTransitStateTest {
 
     @Test
     public void testNextState() {
-        ProductState state = new InTransitState();
-        ProductContext context = new ProductContext();
+        InTransitState inTransitState = new InTransitState();
+        WeightCalculator weightCalculator = new StandardShippingCalculator();
+        ProductContext context = new ProductContext(inTransitState, weightCalculator);
 
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputStream));
 
-        state.nextState(context);
+        inTransitState.nextState(context);
 
         System.setOut(System.out);
 
-        String expectedOutput = "Package is already delivered. No further state change.";
-        assertEquals(expectedOutput, outputStream.toString().trim());
+        // Check if the state is updated to DeliveredState
+        assertTrue(context.getState() instanceof DeliveredState);
     }
 }

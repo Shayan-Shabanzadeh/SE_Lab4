@@ -1,5 +1,6 @@
 package product;
 
+import calculator.StandardShippingCalculator;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
@@ -27,7 +28,7 @@ class DeliveredStateTest {
     @Test
     public void testNextState() {
         ProductState state = new DeliveredState();
-        ProductContext context = new ProductContext();
+        ProductContext context = new ProductContext(state , new StandardShippingCalculator());
 
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputStream));
